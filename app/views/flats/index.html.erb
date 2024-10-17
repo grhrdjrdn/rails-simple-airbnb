@@ -1,0 +1,17 @@
+<% if params[:search] %>
+  <p>Results for "<%= params[:search] %>"</p>
+  <p><%= @flats.size %> out of <%= @total_flats %> flats</p>
+<% end %>
+
+<% @flats.each do |flat| %>
+  <div>
+    <%= image_tag(flat.picture_url, :alt => "Image of #{flat.name}") %>
+    <p><%= flat.name %></p>
+    <p><%= flat.address %></p>
+    <p><%= flat.number_of_guests %></p>
+    <p><%= flat.price_per_night %></p>
+    <p><%= link_to("More Info", flat_path(flat)) %></p>
+    <p><%= link_to("Edit", edit_flat_path(flat)) %></p>
+    <p><%= render "delete", flat: flat %></p>
+  </div>
+<% end %>
